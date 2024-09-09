@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CsvFileAttributes">
+    <option name="attributeMap">
+      <map>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220701_mock_binary_whole_parameters_criteria_snr100.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220705_mock_binary_pre_parameters_criteria.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220705_mock_binary_whole_parameters_criteria.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220707_mock_binary_whole_parameters_criteria.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220708_mock_binary_pre_parameters_criteria.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220708_mock_binary_whole_parameters_criteria.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220710_mock_binary_pre_parameters_criteria_expended.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220710_mock_binary_whole_parameters_criteria.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220710_mock_binary_whole_parameters_criteria_snr_random.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220711_mock_binary_whole_parameters_criteria_snr_random.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220712_snr_100_mock_binary_whole_parameters_criteria.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220712_snr_100_random_q_mock_binary_whole_parameters_criteria.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220713_rdm_snr_rdm_q_mock_binary_whole_parameters_criteria.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220714_rdm_snr_rdm_q_mh-1_am0.4_mock_binary_part_parameters_criteria.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/20220629_main2_mock_binary_orbits_set_criteria/20220714_rdm_snr_rdm_q_mh-1_am0.4_mock_binary_whole_parameters_criteria.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -67,9 +67,10 @@ def read_mock_paras(mock_paras, snr, index, mu=5.03, sigma=2.28, low_p=-0.7, upp
     # rv2_list = orbital_paras[3]
     # gamma_list = orbital_paras[1]
     # phase_list = orbital_paras[-1]
-    # P,                                                                                                      gamma.tolist(),        q_dyn, rv1_list, rv2_list, phases.tolist()
-    return {'phi': [teff1, teff2, logg1, logg2, mh, alpha_m, R1, R2, snr, period, 2, mact1, mact2, logage, q, orbital_paras[1][0], orbital_paras[2][0], \
-                    orbital_paras[3], orbital_paras[4], orbital_paras[5]]}
+    # P,                                                                      gamma.tolist(), rv1_list, rv2_list, phases.tolist()
+    return {'phi': [teff1, teff2, logg1, logg2, mh, alpha_m, R1, R2, snr, period, 2, mact1, mact2, logage, q,
+                    orbital_paras[1][0], \
+                    orbital_paras[2], orbital_paras[3], orbital_paras[4]]}
 
 
 def model_mock_binary(phi, sp, regli, wave):
@@ -105,8 +106,8 @@ def model_mock_binary(phi, sp, regli, wave):
 
         flux_binary_model = phi[6] ** 2 * flux_norm1 * 10 ** flux_cont1 + phi[7] ** 2 * flux_norm2 * 10 ** flux_cont2
         scale = np.maximum(flux_binary_model / phi[8],
-                        np.zeros(
-                            len(flux_binary_model)))  # Set snr based on whether the flux_obs is bigger than 0. phi['phi'][10] = corresponding snr
+                           np.zeros(
+                               len(flux_binary_model)))  # Set snr based on whether the flux_obs is bigger than 0. phi['phi'][10] = corresponding snr
 
         flux_binary_obs = np.random.normal(loc=flux_binary_model, scale=scale)
         flux_binary_norm, flux_binary_cont = normalize_spectrum_general(wave, flux_binary_obs)
@@ -122,7 +123,7 @@ def model_mock_binary(phi, sp, regli, wave):
 
 # In[getPhasesWithRandomT0]:
 def getPhasesWithRandomT0(deltaTs, P):
-    ts = np.insert(np.cumsum(deltaTs), 0, 0.) + ran.uniform(0, P)  # Random T0
+    ts = np.insert(np.cumsum(deltaTs), 0, 0.) + np.uniform(0, P)  # Random T0
     return (ts % P) / P
 
 
@@ -186,24 +187,23 @@ def getK1K2(i, q, P, m1, e):
     return abs(part1 * a1), abs(part1 * a2)
 
 
-# In[getRvsByPhases]:
-def getRvsByPhases(i,q,P,m1,e,omega,phases):
-    rv1List = []
-    part1 = 2.*pi*np.sin(i) / (P*np.sqrt(1-e**2))
-    a = ( (G*m1*(1+q)*P**2)/(4*pi**2) )**(1./3.)
-    a1 = a / (1.+1./q)
-    part4 = e*np.cos(omega)
+def getRvsByPhases(i, q, P, m1, e, omega, phases):
+    rv1list = []
+    part1 = 2. * pi * np.sin(i) / (P * np.sqrt(1 - e ** 2))
+    a = ((G * m1 * (1 + q) * P ** 2) / (4 * pi ** 2)) ** (1. / 3.)
+    a1 = a / (1. + 1. / q)
+    part4 = e * np.cos(omega)
     factor1 = part1 * a1
     for ph in phases:
         theta = getTheta(e, ph)
         part3 = np.cos(theta + omega)
-        rv1List.append(factor1 * (part3 + part4))
-    rv1List = np.array(rv1List)
-    rv2List = -np.array(rv1List)*m1/(m1*q)
-    return rv1List, rv2List
+        rv1list.append(factor1 * (part3 + part4))
+    rv1list = np.array(rv1list)
+    rv2list = -np.array(rv1list) * m1 / (m1 * q)
+    return rv1list, rv2list
 
 
-def getRvsBy_ramdom_Phases(q, P, m1, e=0, omega=0, phases_num=10, i=np.array([pi/2])):
+def getRvsBy_ramdom_Phases(q, P, m1, e=0, omega=0, phases_num=10, i=np.array([pi / 2])):
     phases = np.random.uniform(0.0, 1.0, phases_num)
     gamma = np.random.normal(0, 70, 1)
     rv1s = []
@@ -212,7 +212,7 @@ def getRvsBy_ramdom_Phases(q, P, m1, e=0, omega=0, phases_num=10, i=np.array([pi
         rv1, rv2 = getRvsByPhases(i, q, P, m1, e, omega, [ph])
         rv1s.append(rv1[0][0])
         rv2s.append(rv2[0][0])
-    q_dyn = (-(np.array(rv1s)/np.array(rv2s)))
+    q_dyn = (-(np.array(rv1s) / np.array(rv2s)))
     rv1s_obs = rv1s + gamma
     rv2s_obs = gamma + (gamma - rv1s_obs) / q_dyn
 
@@ -222,7 +222,7 @@ def getRvsBy_ramdom_Phases(q, P, m1, e=0, omega=0, phases_num=10, i=np.array([pi
 
 def get_period(mu, sigma, low_p, upper_p):
     s = np.random.normal(mu, sigma, 10000)
-    select_s = s[(s>low_p) & (s<upper_p)]
+    select_s = s[(s > low_p) & (s < upper_p)]
     return select_s[0]
 
 
@@ -231,10 +231,10 @@ if __name__ == "__main__":
     load models
     '''
     workdir = '/Users/liujunhui/PycharmProjects/LamostBinary/'
-    sp = joblib.load(workdir + 'sp2022_05_29_13_09_44_Step_64013_1.dmp')
+    sp = joblib.load(workdir + 'sp2021_12_28_23_48_41_Step_62577_1.dmp')
     mist_model = joblib.load(workdir + 'mist_eep_202_454_teff_3500_8000_logt_6.83_10.26_mh_-2.1_0.7_gaia_2mass.dump')
     sp_mist, colname_input, colname_output, acc, sp_val = mist_model
-    regli = joblib.load(workdir + 'sp2022_05_29_11_07_00_Step_26468_1regli_conti_in_log.dmp')
+    regli = joblib.load(workdir + 'sp2022_02_12_10_49_58_Step_26468_1regli_conti_in_log.dmp')
 
     wave = np.arange(3950, 5750, 1.)
     sp.wave = wave
@@ -254,34 +254,24 @@ if __name__ == "__main__":
     samplesize = 10000
     random_index = random.sample(range(0, len(mock_paras)), samplesize)
 
-    set_spec_num = 2
+    Set_spec_num = 2
 
     params = []
-    mock_flux_binary = np.zeros((samplesize, set_spec_num, len(wave)), dtype=float)
-    mock_flux_err_binary = np.zeros((samplesize, set_spec_num, len(wave)), dtype=float)
-    mock_flux_norm_Star1 = np.zeros((samplesize, set_spec_num, len(wave)), dtype=float)
-    mock_flux_norm_Star2 = np.zeros((samplesize, set_spec_num, len(wave)), dtype=float)
-
+    mock_flux_binary = np.zeros((samplesize, Set_spec_num, len(wave)), dtype=float)
+    mock_flux_err_binary = np.zeros((samplesize, Set_spec_num, len(wave)), dtype=float)
 
     for i in range(len(random_index)):
-        one_mock_paras = read_mock_paras(mock_paras, expdistri_30[random_index[i]], random_index[i], epoches=set_spec_num)
+        one_mock_paras = read_mock_paras(mock_paras, expdistri_30[random_index[i]], random_index[i],
+                                         epoches=Set_spec_num)
 
         ####################### add noise to flux ###################
-        flux_binary_norm, flux_binary_norm_err, flux_binary_obs, flux_norm1, flux_norm2 = model_mock_binary(one_mock_paras['phi'],
-                                                                                                            sp, regli,
-                                                                                                            wave)
-
-        # plt.plot(wave, flux_binary_norm[0], '-')
-        # plt.plot(wave, flux_norm1[0]+0.6, '-')
-        # plt.plot(wave, flux_norm2[0]+0.3, '-')
-        # plt.show()
+        flux_binary_norm, flux_binary_norm_err, flux_binary_obs, flux_norm1, flux_norm2 = model_mock_binary(
+            one_mock_paras['phi'],
+            sp, regli,
+            wave)
         params.append(one_mock_paras['phi'])
-        # print(one_mock_paras['phi'])
         mock_flux_binary[i] = flux_binary_norm
         mock_flux_err_binary[i] = flux_binary_norm_err
-        mock_flux_norm_Star1[i] = flux_norm1
-        mock_flux_norm_Star2[i] = flux_norm2
 
-    b = {'params': params, 'mock_flux_binary': mock_flux_binary, 'mock_flux_err_binary': mock_flux_err_binary,
-         'mock_flux_norm_Star1': mock_flux_norm_Star1, 'mock_flux_norm_Star2': mock_flux_norm_Star2}
-    dump(b, './20220608_mock_binary_elu_correct_rv_logg_3_Teff_4000_7000_2_epoches.dump')
+    b = {'params': params, 'mock_flux_binary': mock_flux_binary, 'mock_flux_err_binary': mock_flux_err_binary}
+    dump(b, './mock_binary_data_logg_3_Teff_4000_7000_2_epoches.dump')

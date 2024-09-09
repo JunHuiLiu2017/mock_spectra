@@ -135,6 +135,9 @@ def model_mock_binary(phi, sp, regli, wave):
     return flux_binary_norm, flux_binary_norm_err, flux_binary_obs, flux_norm1, flux_norm2
 
 
+
+
+
 if __name__ == "__main__":
     '''
     load models
